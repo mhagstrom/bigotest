@@ -75,6 +75,7 @@ partial class MainForm
         addUserButton.Size = new System.Drawing.Size(94, 30);
         addUserButton.TabIndex = 17;
         addUserButton.Text = "Add User";
+        addUserButton.Click += addUserButton_Click;
         
         assignRoleButton.AutoSize = true;
         assignRoleButton.Location = new System.Drawing.Point(309, 48);

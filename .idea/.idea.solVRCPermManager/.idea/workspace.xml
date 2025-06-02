@@ -9,9 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fad5a1c2-7e72-4ef1-a4d8-a4bd0bfac268" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.solVRCPermManager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.solVRCPermManager/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pjtVRCPermManager/MainForm.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/pjtVRCPermManager/MainForm.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pjtVRCPermManager/MainForm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/pjtVRCPermManager/MainForm.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pjtVRCPermManager/NUnit.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748829707645</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="needs new comments">
+      <option name="closed" value="true" />
+      <created>1748832575642</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1748832575642</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,7 +178,8 @@
     <MESSAGE value="added binary search" />
     <MESSAGE value="added ability to add lots of data" />
     <MESSAGE value="one error in NUnit.cs line 82" />
-    <option name="LAST_COMMIT_MESSAGE" value="one error in NUnit.cs line 82" />
+    <MESSAGE value="needs new comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="needs new comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

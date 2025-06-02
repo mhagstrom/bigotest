@@ -61,12 +61,40 @@ public partial class MainForm : Form
         if (string.IsNullOrEmpty(searchUsername)) return;
 
         lsbResults.Items.Clear();
-        // Linear Search - O(n) time complexity
-        foreach (var role in permissions.Keys)
+        
+        if (cmbSearchMethod.SelectedItem.ToString() == "Linear Search")
         {
-            if (permissions[role].Contains(searchUsername))
+            // Linear Search - O(n) time complexity
+            foreach (var role in permissions.Keys)
             {
-                lsbResults.Items.Add($"Found in role: {role}");
+                if (permissions[role].Contains(searchUsername))
+                {
+                    lsbResults.Items.Add($"Found in role: {role}");
+                }
+            }
+        }
+        else // Binary Search
+        {
+            // Get all users and sort them first (required for binary search)
+            var allUsers = new List<string>();
+            foreach (var role in permissions.Values)
+            {
+                allUsers.AddRange(role);
+            }
+            allUsers = allUsers.Distinct().OrderBy(x => x).ToList();
+
+            // Perform binary search
+            int index = BinarySearch(allUsers, searchUsername);
+            if (index != -1)
+            {
+                // If found, still need to check which roles they're in
+                foreach (var role in permissions.Keys)
+                {
+                    if (permissions[role].Contains(searchUsername))
+                    {
+                        lsbResults.Items.Add($"Found in role: {role} (using Binary Search)");
+                    }
+                }
             }
         }
 
@@ -253,5 +281,28 @@ public partial class MainForm : Form
         {
             txbUsername.Text = lsbPerms.SelectedItem.ToString();
         }
+    }
+
+    // Binary Search - O(log n) - requires sorted array
+    private int BinarySearch(List<string> sortedItems, string target)
+    {
+        int left = 0;
+        int right = sortedItems.Count - 1;
+
+        while (left <= right)
+        {
+            int mid = left + (right - left) / 2;
+            int comparison = string.Compare(sortedItems[mid], target);
+
+            if (comparison == 0)
+                return mid;  // Found the target
+            
+            if (comparison < 0)
+                left = mid + 1;  // Target is in right half
+            else
+                right = mid - 1;  // Target is in left half
+        }
+
+        return -1;  // Target not found
     }
 }

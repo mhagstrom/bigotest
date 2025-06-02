@@ -32,6 +32,8 @@ partial class MainForm
         searchResultsLabel = new Label();
         lsbResults = new ListBox();
         cmbSortMethod = new ComboBox();
+        cmbSearchMethod = new ComboBox();
+        searchMethodLabel = new Label();
 
         // Label for username entry
         usernameLabel.AutoSize = true;
@@ -135,6 +137,23 @@ partial class MainForm
         sortButton.Text = "Sort Results";
         sortButton.Click += sortButton_Click;
 
+        // Search method label
+        searchMethodLabel.AutoSize = true;
+        searchMethodLabel.Location = new Point(309, 270);
+        searchMethodLabel.Name = "searchMethodLabel";
+        searchMethodLabel.Size = new Size(100, 20);
+        searchMethodLabel.Text = "Search Method:";
+
+        // Search method combo box
+        cmbSearchMethod.AutoSize = true;
+        cmbSearchMethod.DropDownStyle = ComboBoxStyle.DropDownList;
+        cmbSearchMethod.Location = new Point(309, 293);
+        cmbSearchMethod.Name = "cmbSearchMethod";
+        cmbSearchMethod.Size = new Size(114, 28);
+        cmbSearchMethod.MinimumSize = new Size(114, 28);
+        cmbSearchMethod.Items.AddRange(new object[] { "Linear Search", "Binary Search" });
+        cmbSearchMethod.SelectedIndex = 0;
+
         // Search results label
         searchResultsLabel.AutoSize = true;
         searchResultsLabel.Location = new Point(436, 15);
@@ -167,7 +186,9 @@ partial class MainForm
             cmbSortMethod,
             sortButton,
             searchResultsLabel,
-            lsbResults
+            lsbResults,
+            searchMethodLabel,
+            cmbSearchMethod,
         });
         Name = "MainForm";
         Text = "VRC Permission Manager";
@@ -190,4 +211,6 @@ partial class MainForm
     private Label permissionsLabel;
     private Label searchResultsLabel;
     private ListBox lsbResults;
+    private ComboBox cmbSearchMethod;
+    private Label searchMethodLabel;
 }

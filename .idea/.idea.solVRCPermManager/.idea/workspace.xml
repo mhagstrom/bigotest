@@ -8,7 +8,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fad5a1c2-7e72-4ef1-a4d8-a4bd0bfac268" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.solVRCPermManager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.solVRCPermManager/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pjtVRCPermManager/MainForm.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/pjtVRCPermManager/MainForm.Designer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pjtVRCPermManager/MainForm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/pjtVRCPermManager/MainForm.cs" afterDir="false" />
     </list>
@@ -96,7 +95,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1748825442972</updated>
-      <workItem from="1748825444349" duration="1598000" />
+      <workItem from="1748825444349" duration="2063000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -114,7 +113,23 @@
       <option name="project" value="LOCAL" />
       <updated>1748826654468</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="draft sorting and searching">
+      <option name="closed" value="true" />
+      <created>1748827098254</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1748827098254</updated>
+    </task>
+    <task id="LOCAL-00004" summary="draft sorting and searching">
+      <option name="closed" value="true" />
+      <created>1748827154199</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1748827154199</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,7 +141,9 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="init" />
     <MESSAGE value="minor renames" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor renames" />
+    <MESSAGE value="draft sort and search" />
+    <MESSAGE value="draft sorting and searching" />
+    <option name="LAST_COMMIT_MESSAGE" value="draft sorting and searching" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

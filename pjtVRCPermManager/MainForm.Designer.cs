@@ -26,6 +26,12 @@ partial class MainForm
         usernameLabel = new Label();
         roleLabel = new Label();
         permissionsLabel = new Label();
+        searchButton = new Button();
+        userRolesButton = new Button();
+        sortButton = new Button();
+        searchResultsLabel = new Label();
+        lsbResults = new ListBox();
+        cmbSortMethod = new ComboBox();
 
         // Label for username entry
         usernameLabel.AutoSize = true;
@@ -93,11 +99,59 @@ partial class MainForm
         removeRoleButton.MinimumSize = new Size(114, 29);
         removeRoleButton.Text = "Remove Role";
 
-        
+        // Search button
+        searchButton.AutoSize = true;
+        searchButton.Location = new Point(309, 122);
+        searchButton.Name = "searchButton";
+        searchButton.Size = new Size(114, 29);
+        searchButton.MinimumSize = new Size(114, 29);
+        searchButton.Text = "Search User";
+        searchButton.Click += searchButton_Click;
+
+        // User roles button
+        userRolesButton.AutoSize = true;
+        userRolesButton.Location = new Point(309, 159);
+        userRolesButton.Name = "userRolesButton";
+        userRolesButton.Size = new Size(114, 29);
+        userRolesButton.MinimumSize = new Size(114, 29);
+        userRolesButton.Text = "Show User Roles";
+        userRolesButton.Click += userRolesButton_Click;
+
+        // Sort method combo box
+        cmbSortMethod.AutoSize = true;
+        cmbSortMethod.DropDownStyle = ComboBoxStyle.DropDownList;
+        cmbSortMethod.Location = new Point(309, 196);
+        cmbSortMethod.Name = "cmbSortMethod";
+        cmbSortMethod.Size = new Size(114, 28);
+        cmbSortMethod.MinimumSize = new Size(114, 28);
+        cmbSortMethod.Items.AddRange(new object[] { "Bubble Sort", "Quick Sort", "Merge Sort" });
+
+        // Sort button
+        sortButton.AutoSize = true;
+        sortButton.Location = new Point(309, 233);
+        sortButton.Name = "sortButton";
+        sortButton.Size = new Size(114, 29);
+        sortButton.MinimumSize = new Size(114, 29);
+        sortButton.Text = "Sort Results";
+        sortButton.Click += sortButton_Click;
+
+        // Search results label
+        searchResultsLabel.AutoSize = true;
+        searchResultsLabel.Location = new Point(436, 15);
+        searchResultsLabel.Name = "searchResultsLabel";
+        searchResultsLabel.Size = new Size(89, 20);
+        searchResultsLabel.Text = "Results:";
+
+        // Results ListBox
+        lsbResults.Location = new Point(436, 38);
+        lsbResults.Name = "lsbResults";
+        lsbResults.Size = new Size(281, 321);
+        lsbResults.MinimumSize = new Size(281, 321);
+
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(434, 371);
-        MinimumSize = new Size(450, 410);
+        ClientSize = new Size(734, 371);
+        MinimumSize = new Size(750, 410);
         Controls.AddRange(new Control[] {
             usernameLabel,
             txbUsername,
@@ -107,7 +161,13 @@ partial class MainForm
             lsbPerms,
             addUserButton,
             assignRoleButton,
-            removeRoleButton
+            removeRoleButton,
+            searchButton,
+            userRolesButton,
+            cmbSortMethod,
+            sortButton,
+            searchResultsLabel,
+            lsbResults
         });
         Name = "MainForm";
         Text = "VRC Permission Manager";
@@ -121,7 +181,13 @@ partial class MainForm
     private Button addUserButton;
     private Button assignRoleButton;
     private Button removeRoleButton;
+    private Button searchButton;
+    private Button userRolesButton;
+    private Button sortButton;
+    private ComboBox cmbSortMethod;
     private Label usernameLabel;
     private Label roleLabel;
     private Label permissionsLabel;
+    private Label searchResultsLabel;
+    private ListBox lsbResults;
 }

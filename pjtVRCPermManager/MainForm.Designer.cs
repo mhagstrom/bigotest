@@ -35,6 +35,41 @@ partial class MainForm
         cmbSearchMethod = new ComboBox();
         searchMethodLabel = new Label();
 
+        // New Permission Label
+        lblNewPermission = new Label();
+        txbNewPermission = new TextBox();
+        btnAddPermission = new Button();
+        btnRemovePermission = new Button();
+        lblNewPermission = new Label();
+
+        // New Permission Label
+        lblNewPermission.AutoSize = true;
+        lblNewPermission.Location = new Point(12, 350);
+        lblNewPermission.Name = "lblNewPermission";
+        lblNewPermission.Size = new Size(109, 20);
+        lblNewPermission.Text = "New Permission:";
+
+        // New Permission TextBox
+        txbNewPermission.Location = new Point(127, 347);
+        txbNewPermission.Name = "txbNewPermission";
+        txbNewPermission.Size = new Size(150, 27);
+
+        // Add Permission Button
+        btnAddPermission.Location = new Point(283, 346);
+        btnAddPermission.Name = "btnAddPermission";
+        btnAddPermission.Size = new Size(94, 29);
+        btnAddPermission.Text = "Add";
+        btnAddPermission.UseVisualStyleBackColor = true;
+        btnAddPermission.Click += addPermissionButton_Click;
+
+        // Remove Permission Button
+        btnRemovePermission.Location = new Point(383, 346);
+        btnRemovePermission.Name = "btnRemovePermission";
+        btnRemovePermission.Size = new Size(94, 29);
+        btnRemovePermission.Text = "Remove";
+        btnRemovePermission.UseVisualStyleBackColor = true;
+        btnRemovePermission.Click += removePermissionButton_Click;
+
         // Label for username entry
         usernameLabel.AutoSize = true;
         usernameLabel.Location = new Point(12, 15);
@@ -167,6 +202,92 @@ partial class MainForm
         lsbResults.Size = new Size(281, 321);
         lsbResults.MinimumSize = new Size(281, 321);
 
+        // Add to InitializeComponent():
+        nudUserCount = new NumericUpDown();
+        btnGenerateUsers = new Button();
+        btnRandomizePerms = new Button();
+        lblUserCount = new Label();
+
+        // User Count Label
+        lblUserCount.AutoSize = true;
+        lblUserCount.Location = new Point(12, 390);
+        lblUserCount.Name = "lblUserCount";
+        lblUserCount.Size = new Size(115, 20);
+        lblUserCount.Text = "Number of Users:";
+
+        // User Count NumericUpDown
+        ((System.ComponentModel.ISupportInitialize)nudUserCount).BeginInit();
+        nudUserCount.Location = new Point(127, 388);
+        nudUserCount.Name = "nudUserCount";
+        nudUserCount.Size = new Size(150, 27);
+        nudUserCount.Minimum = 1;
+        nudUserCount.Maximum = 1000;
+        nudUserCount.Value = 100;
+
+        // Generate Users Button
+        btnGenerateUsers.Location = new Point(283, 387);
+        btnGenerateUsers.Name = "btnGenerateUsers";
+        btnGenerateUsers.Size = new Size(94, 29);
+        btnGenerateUsers.Text = "Generate";
+        btnGenerateUsers.UseVisualStyleBackColor = true;
+        btnGenerateUsers.Click += generateUsersButton_Click;
+
+        // Randomize Permissions Button
+        btnRandomizePerms.Location = new Point(383, 387);
+        btnRandomizePerms.Name = "btnRandomizePerms";
+        btnRandomizePerms.Size = new Size(94, 29);
+        btnRandomizePerms.Text = "Randomize";
+        btnRandomizePerms.UseVisualStyleBackColor = true;
+        btnRandomizePerms.Click += randomizePermsButton_Click;
+
+        // Add to InitializeComponent():
+        nudPermCount = new NumericUpDown();
+        btnGeneratePerms = new Button();
+        lblPermCount = new Label();
+
+        // Permission Count Label
+        lblPermCount.AutoSize = true;
+        lblPermCount.Location = new Point(12, 430);
+        lblPermCount.Name = "lblPermCount";
+        lblPermCount.Size = new Size(115, 20);
+        lblPermCount.Text = "New Permissions:";
+
+        // Permission Count NumericUpDown
+        ((System.ComponentModel.ISupportInitialize)nudPermCount).BeginInit();
+        nudPermCount.Location = new Point(127, 428);
+        nudPermCount.Name = "nudPermCount";
+        nudPermCount.Size = new Size(150, 27);
+        nudPermCount.Minimum = 1;
+        nudPermCount.Maximum = 1000;
+        nudPermCount.Value = 10;
+
+        // Generate Permissions Button
+        btnGeneratePerms.Location = new Point(283, 427);
+        btnGeneratePerms.Name = "btnGeneratePerms";
+        btnGeneratePerms.Size = new Size(194, 29);
+        btnGeneratePerms.Text = "Generate Permissions";
+        btnGeneratePerms.UseVisualStyleBackColor = true;
+        btnGeneratePerms.Click += generatePermissionsButton_Click;
+
+        // Add to Controls collection
+        Controls.Add(lblPermCount);
+        Controls.Add(nudPermCount);
+        Controls.Add(btnGeneratePerms);
+        ((System.ComponentModel.ISupportInitialize)nudPermCount).EndInit();
+
+        // Add to Controls collection
+        Controls.Add(lblNewPermission);
+        Controls.Add(txbNewPermission);
+        Controls.Add(btnAddPermission);
+        Controls.Add(btnRemovePermission);
+
+        // Add to Controls collection
+        Controls.Add(lblUserCount);
+        Controls.Add(nudUserCount);
+        Controls.Add(btnGenerateUsers);
+        Controls.Add(btnRandomizePerms);
+        ((System.ComponentModel.ISupportInitialize)nudUserCount).EndInit();
+
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(734, 371);
@@ -213,4 +334,15 @@ partial class MainForm
     private ListBox lsbResults;
     private ComboBox cmbSearchMethod;
     private Label searchMethodLabel;
+    private TextBox txbNewPermission;
+    private Button btnAddPermission;
+    private Button btnRemovePermission;
+    private Label lblNewPermission;
+    private NumericUpDown nudUserCount;
+    private Button btnGenerateUsers;
+    private Button btnRandomizePerms;
+    private Label lblUserCount;
+    private NumericUpDown nudPermCount;
+    private Button btnGeneratePerms;
+    private Label lblPermCount;
 }

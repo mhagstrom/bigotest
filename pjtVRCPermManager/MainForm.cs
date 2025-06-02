@@ -5,19 +5,96 @@ public partial class MainForm : Form
     private HashSet<string> whitelist = new HashSet<string>();
     private Dictionary<string, HashSet<string>> permissions = new Dictionary<string, HashSet<string>>
     {
-        {"NoPerms", new HashSet<string>()},
-        {"DJ", new HashSet<string>()},
-        {"Moderator", new HashSet<string>()},
-        {"Bouncer", new HashSet<string>()},
-        {"Media Team", new HashSet<string>()},
-        {"GoH", new HashSet<string>()}
+        {"NoPerms", new HashSet<string>()}  // Keep only NoPerms as the default
     };
+
+	private readonly Random random = new Random();
 
     public MainForm()
     {
         InitializeComponent();
+        RefreshRolesList();
+    }
+
+    private void addPermissionButton_Click(object sender, EventArgs e)
+    {
+        string newPermission = txbNewPermission.Text.Trim();
+        
+        if (string.IsNullOrEmpty(newPermission))
+        {
+            MessageBox.Show("Permission name cannot be empty.");
+            return;
+        }
+
+        if (newPermission.Equals("NoPerms", StringComparison.OrdinalIgnoreCase))
+        {
+            MessageBox.Show("Cannot add 'NoPerms' as it is a reserved permission type.");
+            return;
+        }
+
+        if (permissions.ContainsKey(newPermission))
+        {
+            MessageBox.Show("This permission already exists.");
+            return;
+        }
+
+        permissions.Add(newPermission, new HashSet<string>());
+        RefreshRolesList();
+        MessageBox.Show($"Added new permission type: {newPermission}");
+    }
+
+    private void removePermissionButton_Click(object sender, EventArgs e)
+    {
+        string selectedPermission = cmbRoles.SelectedItem?.ToString();
+
+        if (string.IsNullOrEmpty(selectedPermission))
+        {
+            MessageBox.Show("Please select a permission to remove.");
+            return;
+        }
+
+        if (selectedPermission.Equals("NoPerms", StringComparison.OrdinalIgnoreCase))
+        {
+            MessageBox.Show("Cannot remove 'NoPerms' as it is a required permission type.");
+            return;
+        }
+
+        // Get all users who only have this permission (besides NoPerms)
+        var affectedUsers = permissions[selectedPermission]
+            .Where(user => permissions
+                .Where(p => p.Key != "NoPerms" && p.Key != selectedPermission)
+                .All(p => !p.Value.Contains(user)))
+            .ToList();
+
+        // Add these users back to NoPerms
+        foreach (var user in affectedUsers)
+        {
+            permissions["NoPerms"].Add(user);
+        }
+
+        // Remove the permission type
+        permissions.Remove(selectedPermission);
+        
+        RefreshRolesList();
+        MessageBox.Show($"Removed permission type: {selectedPermission}\n" +
+                       $"Users affected: {affectedUsers.Count}");
+    }
+
+    private void RefreshRolesList()
+    {
+        var selectedRole = cmbRoles.SelectedItem?.ToString();
+        cmbRoles.Items.Clear();
         cmbRoles.Items.AddRange(permissions.Keys.ToArray());
-        cmbSortMethod.SelectedIndex = 0;
+        
+        // Try to restore the previous selection if it still exists
+        if (!string.IsNullOrEmpty(selectedRole) && permissions.ContainsKey(selectedRole))
+        {
+            cmbRoles.SelectedItem = selectedRole;
+        }
+        else
+        {
+            cmbRoles.SelectedIndex = 0; // Default to first item
+        }
     }
 
     private void addUserButton_Click(object sender, EventArgs e)
@@ -25,7 +102,9 @@ public partial class MainForm : Form
         string username = txbUsername.Text.Trim();
         if (!string.IsNullOrEmpty(username) && whitelist.Add(username))
         {
-            MessageBox.Show($"Added {username} to whitelist.");
+            // Automatically assign NoPerms role to new users
+            permissions["NoPerms"].Add(username);
+            MessageBox.Show($"Added {username} to whitelist with NoPerms role.");
             RefreshPermsList();
         }
     }
@@ -37,6 +116,12 @@ public partial class MainForm : Form
 
         if (!string.IsNullOrEmpty(username) && permissions.ContainsKey(role))
         {
+            if (role != "NoPerms")
+            {
+                // Remove NoPerms when assigning any other role
+                permissions["NoPerms"].Remove(username);
+            }
+        
             permissions[role].Add(username);
             MessageBox.Show($"Assigned role {role} to {username}.");
             RefreshPermsList();
@@ -48,10 +133,28 @@ public partial class MainForm : Form
         string username = txbUsername.Text.Trim();
         string role = cmbRoles.SelectedItem?.ToString();
 
-        if (!string.IsNullOrEmpty(username) && permissions.ContainsKey(role) && permissions[role].Remove(username))
+        if (!string.IsNullOrEmpty(username) && permissions.ContainsKey(role))
         {
-            MessageBox.Show($"Removed role {role} from {username}.");
-            RefreshPermsList();
+            if (permissions[role].Remove(username))
+            {
+                // Check if user has any remaining roles
+                bool hasOtherRoles = permissions
+                    .Where(p => p.Key != "NoPerms")
+                    .Any(p => p.Value.Contains(username));
+
+                // If no other roles, assign NoPerms
+                if (!hasOtherRoles)
+                {
+                    permissions["NoPerms"].Add(username);
+                    MessageBox.Show($"Removed role {role} from {username}. User now has NoPerms role.");
+                }
+                else
+                {
+                    MessageBox.Show($"Removed role {role} from {username}.");
+                }
+            
+                RefreshPermsList();
+            }
         }
     }
 
@@ -305,4 +408,118 @@ public partial class MainForm : Form
 
         return -1;  // Target not found
     }
+
+	private void generateUsersButton_Click(object sender, EventArgs e)
+	{
+		int userCount = (int)nudUserCount.Value;
+		int existingUsers = whitelist.Count;
+
+		for (int i = 0; i < userCount; i++)
+		{
+			string newUser = $"User_{existingUsers + i}";
+			whitelist.Add(newUser);
+			permissions["NoPerms"].Add(newUser);
+		}
+
+		RefreshPermsList();
+		MessageBox.Show($"Generated {userCount} new users.\nTotal users: {whitelist.Count}");
+	}
+
+	private void randomizePermsButton_Click(object sender, EventArgs e)
+	{
+		if (whitelist.Count == 0)
+		{
+			MessageBox.Show("No users to assign permissions to.");
+			return;
+		}
+
+		// Get all available permissions except NoPerms
+		var availablePerms = permissions.Keys
+			.Where(p => p != "NoPerms")
+			.ToList();
+
+		if (availablePerms.Count == 0)
+		{
+			MessageBox.Show("No permissions available to assign (other than NoPerms).");
+			return;
+		}
+
+		// Clear all existing permissions first
+		foreach (var perm in permissions.Values)
+		{
+			perm.Clear();
+		}
+
+		var users = whitelist.ToList();
+
+		// Randomly assign permissions to each user
+		foreach (var user in users)
+		{
+			// Randomly decide how many permissions this user will get
+			// Using exponential distribution to make fewer permissions more common
+			double randomValue = random.NextDouble();
+			int numPermsToAssign = (int)(Math.Log(1 - randomValue) * -3.0);
+			numPermsToAssign = Math.Min(numPermsToAssign, availablePerms.Count);
+
+			if (numPermsToAssign == 0)
+			{
+				// If user gets no permissions, they get NoPerms
+				permissions["NoPerms"].Add(user);
+				continue;
+			}
+
+			// Randomly select the permissions
+			var shuffledPerms = availablePerms.OrderBy(x => random.Next()).Take(numPermsToAssign);
+			foreach (var perm in shuffledPerms)
+			{
+				permissions[perm].Add(user);
+			}
+		}
+
+		RefreshPermsList();
+
+		// Calculate statistics for the message
+		var stats = whitelist
+			.Select(user => permissions
+				.Count(p => p.Value.Contains(user) && p.Key != "NoPerms"))
+			.GroupBy(count => count)
+			.OrderBy(g => g.Key)
+			.Select(g => $"\n{g.Count()} users have {g.Key} permission(s)")
+			.ToList();
+
+		MessageBox.Show($"Randomized permissions for all users." +
+					   $"\n\nDistribution:{string.Join("", stats)}");
+	}
+
+private void generatePermissionsButton_Click(object sender, EventArgs e)
+{
+    int permCount = (int)nudPermCount.Value;
+    int existingPerms = permissions.Count;
+    
+    // Get the highest number from existing Perm_X permissions
+    int startNumber = permissions.Keys
+        .Where(p => p.StartsWith("Perm_"))
+        .Select(p => 
+        {
+            if (int.TryParse(p.Substring(5), out int num))
+                return num;
+            return -1;
+        })
+        .DefaultIfEmpty(-1)
+        .Max() + 1;
+
+    for (int i = 0; i < permCount; i++)
+    {
+        string newPerm = $"Perm_{startNumber + i}";
+        if (!permissions.ContainsKey(newPerm))
+        {
+            permissions.Add(newPerm, new HashSet<string>());
+        }
+    }
+
+    RefreshRolesList();
+    MessageBox.Show($"Generated {permCount} new permissions.\n" +
+                   $"Total permissions: {permissions.Count}\n" +
+                   $"(excluding NoPerms: {permissions.Count - 1})");
+}
 }

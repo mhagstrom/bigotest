@@ -522,4 +522,61 @@ private void generatePermissionsButton_Click(object sender, EventArgs e)
                    $"Total permissions: {permissions.Count}\n" +
                    $"(excluding NoPerms: {permissions.Count - 1})");
 }
+
+public void ClearUsers()
+{
+    whitelist.Clear();
+    foreach (var perm in permissions.Values)
+    {
+        perm.Clear();
+    }
+}
+
+public void TestGenerateUser(string username)
+{
+    whitelist.Add(username);
+    permissions["NoPerms"].Add(username);
+}
+
+public List<string> TestSearchUser(string username, string searchMethod)
+{
+    var results = new List<string>();
+    if (searchMethod == "Linear Search")
+    {
+        foreach (var user in whitelist)
+        {
+            if (user.Contains(username))
+            {
+                results.Add(user);
+            }
+        }
+    }
+    else if (searchMethod == "Binary Search")
+    {
+        var sortedList = whitelist.OrderBy(x => x).ToList();
+        int index = sortedList.BinarySearch(username);
+        if (index >= 0)
+        {
+            results.Add(sortedList[index]);
+        }
+    }
+    return results;
+}
+
+public void TestSortUsers(string sortMethod)
+{
+    var users = whitelist.ToList();
+    switch (sortMethod)
+    {
+        case "Bubble Sort":
+            BubbleSort(users);
+            break;
+        case "Quick Sort":
+            QuickSort(users, 0, users.Count - 1);
+            break;
+        case "Merge Sort":
+            MergeSort(users);
+            break;
+    }
+}
 }

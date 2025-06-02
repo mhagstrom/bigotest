@@ -77,9 +77,10 @@ public class PermManagerTests
         // Generate test data for each sort test to ensure fresh, unsorted data
         void PrepareTestData()
         {
+            var random = new Random(42); // Consistent seed for reproducibility
             mainForm.ClearUsers();
             var testUsers = Enumerable.Range(0, dataSize)
-                .Select(i => $"TestUser_{random.Next(dataSize)}")  // Random order
+                .Select(i => $"TestUser_{i}_{random.Next()}")  // Ensure uniqueness with index
                 .ToList();
             foreach (var user in testUsers)
             {

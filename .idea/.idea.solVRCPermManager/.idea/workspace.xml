@@ -8,8 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fad5a1c2-7e72-4ef1-a4d8-a4bd0bfac268" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pjtVRCPermManager/MainForm.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/pjtVRCPermManager/MainForm.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pjtVRCPermManager/MainForm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/pjtVRCPermManager/MainForm.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.solVRCPermManager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.solVRCPermManager/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pjtVRCPermManager/NUnit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/pjtVRCPermManager/NUnit.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +60,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -95,7 +96,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1748825442972</updated>
-      <workItem from="1748825444349" duration="2668000" />
+      <workItem from="1748825444349" duration="4679000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -137,7 +138,23 @@
       <option name="project" value="LOCAL" />
       <updated>1748827529027</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added ability to add lots of data">
+      <option name="closed" value="true" />
+      <created>1748828384302</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1748828384302</updated>
+    </task>
+    <task id="LOCAL-00007" summary="one error in NUnit.cs line 82">
+      <option name="closed" value="true" />
+      <created>1748829707645</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1748829707645</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,7 +169,9 @@
     <MESSAGE value="draft sort and search" />
     <MESSAGE value="draft sorting and searching" />
     <MESSAGE value="added binary search" />
-    <option name="LAST_COMMIT_MESSAGE" value="added binary search" />
+    <MESSAGE value="added ability to add lots of data" />
+    <MESSAGE value="one error in NUnit.cs line 82" />
+    <option name="LAST_COMMIT_MESSAGE" value="one error in NUnit.cs line 82" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -17,327 +17,309 @@ partial class MainForm
     
     private void InitializeComponent()
     {
-        txbUsername = new TextBox();
-        cmbRoles = new ComboBox();
-        lsbPerms = new ListBox();
-        addUserButton = new Button();
-        assignRoleButton = new Button();
-        removeRoleButton = new Button();
-        usernameLabel = new Label();
-        roleLabel = new Label();
-        permissionsLabel = new Label();
-        searchButton = new Button();
-        userRolesButton = new Button();
-        sortButton = new Button();
-        searchResultsLabel = new Label();
-        lsbResults = new ListBox();
-        cmbSortMethod = new ComboBox();
-        cmbSearchMethod = new ComboBox();
-        searchMethodLabel = new Label();
-
-        // New Permission Label
-        lblNewPermission = new Label();
-        txbNewPermission = new TextBox();
-        btnAddPermission = new Button();
-        btnRemovePermission = new Button();
-        lblNewPermission = new Label();
-
-        // New Permission Label
+        txbUsername = new System.Windows.Forms.TextBox();
+        cmbRoles = new System.Windows.Forms.ComboBox();
+        lsbUsers = new System.Windows.Forms.ListBox();
+        addUserButton = new System.Windows.Forms.Button();
+        assignRoleButton = new System.Windows.Forms.Button();
+        removeRoleButton = new System.Windows.Forms.Button();
+        usernameLabel = new System.Windows.Forms.Label();
+        roleLabel = new System.Windows.Forms.Label();
+        lsbUsernames = new System.Windows.Forms.Label();
+        btnSearch = new System.Windows.Forms.Button();
+        btnUserRoles = new System.Windows.Forms.Button();
+        btnSort = new System.Windows.Forms.Button();
+        lblSearchResults = new System.Windows.Forms.Label();
+        lsbResults = new System.Windows.Forms.ListBox();
+        cmbSortMethod = new System.Windows.Forms.ComboBox();
+        cmbSearchMethod = new System.Windows.Forms.ComboBox();
+        lblSearchType = new System.Windows.Forms.Label();
+        lblNewPermission = new System.Windows.Forms.Label();
+        txbNewPermission = new System.Windows.Forms.TextBox();
+        btnAddPermission = new System.Windows.Forms.Button();
+        btnRemovePermission = new System.Windows.Forms.Button();
+        nudUserCount = new System.Windows.Forms.NumericUpDown();
+        btnGenerateUsers = new System.Windows.Forms.Button();
+        btnRandomizePerms = new System.Windows.Forms.Button();
+        lblUserCount = new System.Windows.Forms.Label();
+        nudPermCount = new System.Windows.Forms.NumericUpDown();
+        btnGeneratePerms = new System.Windows.Forms.Button();
+        lblPermCount = new System.Windows.Forms.Label();
+        ((System.ComponentModel.ISupportInitialize)nudUserCount).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)nudPermCount).BeginInit();
+        SuspendLayout();
+        
+        txbUsername.Location = new System.Drawing.Point(93, 12);
+        txbUsername.MinimumSize = new System.Drawing.Size(200, 27);
+        txbUsername.Name = "txbUsername";
+        txbUsername.Size = new System.Drawing.Size(200, 27);
+        txbUsername.TabIndex = 12;
+       
+        cmbRoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+        cmbRoles.Location = new System.Drawing.Point(93, 49);
+        cmbRoles.MinimumSize = new System.Drawing.Size(200, 0);
+        cmbRoles.Name = "cmbRoles";
+        cmbRoles.Size = new System.Drawing.Size(200, 28);
+        cmbRoles.TabIndex = 14;
+      
+        lsbUsers.Location = new System.Drawing.Point(12, 108);
+        lsbUsers.MinimumSize = new System.Drawing.Size(281, 244);
+        lsbUsers.Name = "lsbUsers";
+        lsbUsers.Size = new System.Drawing.Size(281, 244);
+        lsbUsers.TabIndex = 16;
+        
+        addUserButton.AutoSize = true;
+        addUserButton.Location = new System.Drawing.Point(309, 11);
+        addUserButton.MinimumSize = new System.Drawing.Size(94, 29);
+        addUserButton.Name = "addUserButton";
+        addUserButton.Size = new System.Drawing.Size(94, 30);
+        addUserButton.TabIndex = 17;
+        addUserButton.Text = "Add User";
+        
+        assignRoleButton.AutoSize = true;
+        assignRoleButton.Location = new System.Drawing.Point(309, 48);
+        assignRoleButton.MinimumSize = new System.Drawing.Size(104, 29);
+        assignRoleButton.Name = "assignRoleButton";
+        assignRoleButton.Size = new System.Drawing.Size(104, 30);
+        assignRoleButton.TabIndex = 18;
+        assignRoleButton.Text = "Assign Role";
+        
+        removeRoleButton.AutoSize = true;
+        removeRoleButton.Location = new System.Drawing.Point(309, 85);
+        removeRoleButton.MinimumSize = new System.Drawing.Size(114, 29);
+        removeRoleButton.Name = "removeRoleButton";
+        removeRoleButton.Size = new System.Drawing.Size(114, 30);
+        removeRoleButton.TabIndex = 19;
+        removeRoleButton.Text = "Remove Role";
+        
+        usernameLabel.AutoSize = true;
+        usernameLabel.Location = new System.Drawing.Point(12, 15);
+        usernameLabel.Name = "usernameLabel";
+        usernameLabel.Size = new System.Drawing.Size(78, 20);
+        usernameLabel.TabIndex = 11;
+        usernameLabel.Text = "Username:";
+        
+        roleLabel.AutoSize = true;
+        roleLabel.Location = new System.Drawing.Point(12, 52);
+        roleLabel.Name = "roleLabel";
+        roleLabel.Size = new System.Drawing.Size(82, 20);
+        roleLabel.TabIndex = 13;
+        roleLabel.Text = "Permission:";
+        
+        lsbUsernames.AutoSize = true;
+        lsbUsernames.Location = new System.Drawing.Point(12, 85);
+        lsbUsernames.Name = "lsbUsernames";
+        lsbUsernames.Size = new System.Drawing.Size(47, 20);
+        lsbUsernames.TabIndex = 15;
+        lsbUsernames.Text = "Users:";
+        
+        btnSearch.AutoSize = true;
+        btnSearch.Location = new System.Drawing.Point(309, 122);
+        btnSearch.MinimumSize = new System.Drawing.Size(114, 29);
+        btnSearch.Name = "btnSearch";
+        btnSearch.Size = new System.Drawing.Size(114, 30);
+        btnSearch.TabIndex = 20;
+        btnSearch.Text = "Search";
+        btnSearch.Click += searchButton_Click;
+        
+        btnUserRoles.AutoSize = true;
+        btnUserRoles.Location = new System.Drawing.Point(309, 159);
+        btnUserRoles.MinimumSize = new System.Drawing.Size(114, 29);
+        btnUserRoles.Name = "btnUserRoles";
+        btnUserRoles.Size = new System.Drawing.Size(128, 30);
+        btnUserRoles.TabIndex = 21;
+        btnUserRoles.Text = "Show User Roles";
+        btnUserRoles.Click += BtnUserRolesClick;
+         
+        btnSort.AutoSize = true;
+        btnSort.Location = new System.Drawing.Point(309, 233);
+        btnSort.MinimumSize = new System.Drawing.Size(114, 29);
+        btnSort.Name = "btnSort";
+        btnSort.Size = new System.Drawing.Size(114, 30);
+        btnSort.TabIndex = 23;
+        btnSort.Text = "Sort Results";
+        btnSort.Click += BtnSortClick;
+         
+        lblSearchResults.AutoSize = true;
+        lblSearchResults.Location = new System.Drawing.Point(436, 15);
+        lblSearchResults.Name = "lblSearchResults";
+        lblSearchResults.Size = new System.Drawing.Size(58, 20);
+        lblSearchResults.TabIndex = 24;
+        lblSearchResults.Text = "Results:";
+         
+        lsbResults.Location = new System.Drawing.Point(436, 38);
+        lsbResults.MinimumSize = new System.Drawing.Size(281, 321);
+        lsbResults.Name = "lsbResults";
+        lsbResults.Size = new System.Drawing.Size(281, 304);
+        lsbResults.TabIndex = 25;
+         
+        cmbSortMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+        cmbSortMethod.Items.AddRange(new object[] { "Bubble Sort", "Quick Sort", "Merge Sort" });
+        cmbSortMethod.Location = new System.Drawing.Point(309, 196);
+        cmbSortMethod.MinimumSize = new System.Drawing.Size(114, 0);
+        cmbSortMethod.Name = "cmbSortMethod";
+        cmbSortMethod.Size = new System.Drawing.Size(114, 28);
+        cmbSortMethod.TabIndex = 22;
+         
+        cmbSearchMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+        cmbSearchMethod.Items.AddRange(new object[] { "Linear Search", "Binary Search" });
+        cmbSearchMethod.Location = new System.Drawing.Point(309, 293);
+        cmbSearchMethod.MinimumSize = new System.Drawing.Size(114, 0);
+        cmbSearchMethod.Name = "cmbSearchMethod";
+        cmbSearchMethod.Size = new System.Drawing.Size(114, 28);
+        cmbSearchMethod.TabIndex = 27;
+         
+        lblSearchType.AutoSize = true;
+        lblSearchType.Location = new System.Drawing.Point(309, 270);
+        lblSearchType.Name = "lblSearchType";
+        lblSearchType.Size = new System.Drawing.Size(112, 20);
+        lblSearchType.TabIndex = 26;
+        lblSearchType.Text = "Search Method:";
+         
         lblNewPermission.AutoSize = true;
-        lblNewPermission.Location = new Point(12, 350);
+        lblNewPermission.Location = new System.Drawing.Point(12, 362);
         lblNewPermission.Name = "lblNewPermission";
-        lblNewPermission.Size = new Size(109, 20);
+        lblNewPermission.Size = new System.Drawing.Size(116, 20);
+        lblNewPermission.TabIndex = 3;
         lblNewPermission.Text = "New Permission:";
-
-        // New Permission TextBox
-        txbNewPermission.Location = new Point(127, 347);
+         
+        txbNewPermission.Location = new System.Drawing.Point(127, 359);
         txbNewPermission.Name = "txbNewPermission";
-        txbNewPermission.Size = new Size(150, 27);
-
-        // Add Permission Button
-        btnAddPermission.Location = new Point(283, 346);
+        txbNewPermission.Size = new System.Drawing.Size(150, 27);
+        txbNewPermission.TabIndex = 4;
+         
+        btnAddPermission.Location = new System.Drawing.Point(283, 359);
         btnAddPermission.Name = "btnAddPermission";
-        btnAddPermission.Size = new Size(94, 29);
+        btnAddPermission.Size = new System.Drawing.Size(94, 29);
+        btnAddPermission.TabIndex = 5;
         btnAddPermission.Text = "Add";
         btnAddPermission.UseVisualStyleBackColor = true;
         btnAddPermission.Click += addPermissionButton_Click;
-
-        // Remove Permission Button
-        btnRemovePermission.Location = new Point(383, 346);
+         
+        btnRemovePermission.Location = new System.Drawing.Point(383, 359);
         btnRemovePermission.Name = "btnRemovePermission";
-        btnRemovePermission.Size = new Size(94, 29);
+        btnRemovePermission.Size = new System.Drawing.Size(94, 29);
+        btnRemovePermission.TabIndex = 6;
         btnRemovePermission.Text = "Remove";
         btnRemovePermission.UseVisualStyleBackColor = true;
         btnRemovePermission.Click += removePermissionButton_Click;
-
-        // Label for username entry
-        usernameLabel.AutoSize = true;
-        usernameLabel.Location = new Point(12, 15);
-        usernameLabel.Name = "usernameLabel";
-        usernameLabel.Size = new Size(75, 20);
-        usernameLabel.Text = "Username:";
-
-        // Text field for username entry
-        txbUsername.AutoSize = true;
-        txbUsername.Location = new Point(93, 12);
-        txbUsername.Name = "txbUsername";
-        txbUsername.Size = new Size(200, 27);
-        txbUsername.MinimumSize = new Size(200, 27);
-
-        // Label for roles dropdown
-        roleLabel.AutoSize = true;
-        roleLabel.Location = new Point(12, 52);
-        roleLabel.Name = "roleLabel";
-        roleLabel.Size = new Size(42, 20);
-        roleLabel.Text = "Role:";
-
-        // Dropdown for role
-        cmbRoles.AutoSize = true;
-        cmbRoles.DropDownStyle = ComboBoxStyle.DropDownList;
-        cmbRoles.Location = new Point(93, 49);
-        cmbRoles.Name = "cmbRoles";
-        cmbRoles.Size = new Size(200, 28);
-        cmbRoles.MinimumSize = new Size(200, 28);
-
-        // Label for perms ListBox
-        permissionsLabel.AutoSize = true;
-        permissionsLabel.Location = new Point(12, 92);
-        permissionsLabel.Name = "permissionsLabel";
-        permissionsLabel.Size = new Size(89, 20);
-        permissionsLabel.Text = "Permissions:";
-
-        // ListBox of perms
-        lsbPerms.Location = new Point(12, 115);
-        lsbPerms.Name = "lsbPerms";
-        lsbPerms.Size = new Size(281, 244);
-        lsbPerms.MinimumSize = new Size(281, 244);
-
-        // Button to add user to whitelist
-        addUserButton.AutoSize = true;
-        addUserButton.Location = new Point(309, 11);
-        addUserButton.Name = "addUserButton";
-        addUserButton.Size = new Size(94, 29);
-        addUserButton.MinimumSize = new Size(94, 29);
-        addUserButton.Text = "Add User";
-
-        // Button to assign role to user
-        assignRoleButton.AutoSize = true;
-        assignRoleButton.Location = new Point(309, 48);
-        assignRoleButton.Name = "assignRoleButton";
-        assignRoleButton.Size = new Size(104, 29);
-        assignRoleButton.MinimumSize = new Size(104, 29);
-        assignRoleButton.Text = "Assign Role";
-
-        // Button to remove role from user
-        removeRoleButton.AutoSize = true;
-        removeRoleButton.Location = new Point(309, 85);
-        removeRoleButton.Name = "removeRoleButton";
-        removeRoleButton.Size = new Size(114, 29);
-        removeRoleButton.MinimumSize = new Size(114, 29);
-        removeRoleButton.Text = "Remove Role";
-
-        // Search button
-        searchButton.AutoSize = true;
-        searchButton.Location = new Point(309, 122);
-        searchButton.Name = "searchButton";
-        searchButton.Size = new Size(114, 29);
-        searchButton.MinimumSize = new Size(114, 29);
-        searchButton.Text = "Search User";
-        searchButton.Click += searchButton_Click;
-
-        // User roles button
-        userRolesButton.AutoSize = true;
-        userRolesButton.Location = new Point(309, 159);
-        userRolesButton.Name = "userRolesButton";
-        userRolesButton.Size = new Size(114, 29);
-        userRolesButton.MinimumSize = new Size(114, 29);
-        userRolesButton.Text = "Show User Roles";
-        userRolesButton.Click += userRolesButton_Click;
-
-        // Sort method combo box
-        cmbSortMethod.AutoSize = true;
-        cmbSortMethod.DropDownStyle = ComboBoxStyle.DropDownList;
-        cmbSortMethod.Location = new Point(309, 196);
-        cmbSortMethod.Name = "cmbSortMethod";
-        cmbSortMethod.Size = new Size(114, 28);
-        cmbSortMethod.MinimumSize = new Size(114, 28);
-        cmbSortMethod.Items.AddRange(new object[] { "Bubble Sort", "Quick Sort", "Merge Sort" });
-
-        // Sort button
-        sortButton.AutoSize = true;
-        sortButton.Location = new Point(309, 233);
-        sortButton.Name = "sortButton";
-        sortButton.Size = new Size(114, 29);
-        sortButton.MinimumSize = new Size(114, 29);
-        sortButton.Text = "Sort Results";
-        sortButton.Click += sortButton_Click;
-
-        // Search method label
-        searchMethodLabel.AutoSize = true;
-        searchMethodLabel.Location = new Point(309, 270);
-        searchMethodLabel.Name = "searchMethodLabel";
-        searchMethodLabel.Size = new Size(100, 20);
-        searchMethodLabel.Text = "Search Method:";
-
-        // Search method combo box
-        cmbSearchMethod.AutoSize = true;
-        cmbSearchMethod.DropDownStyle = ComboBoxStyle.DropDownList;
-        cmbSearchMethod.Location = new Point(309, 293);
-        cmbSearchMethod.Name = "cmbSearchMethod";
-        cmbSearchMethod.Size = new Size(114, 28);
-        cmbSearchMethod.MinimumSize = new Size(114, 28);
-        cmbSearchMethod.Items.AddRange(new object[] { "Linear Search", "Binary Search" });
-        cmbSearchMethod.SelectedIndex = 0;
-
-        // Search results label
-        searchResultsLabel.AutoSize = true;
-        searchResultsLabel.Location = new Point(436, 15);
-        searchResultsLabel.Name = "searchResultsLabel";
-        searchResultsLabel.Size = new Size(89, 20);
-        searchResultsLabel.Text = "Results:";
-
-        // Results ListBox
-        lsbResults.Location = new Point(436, 38);
-        lsbResults.Name = "lsbResults";
-        lsbResults.Size = new Size(281, 321);
-        lsbResults.MinimumSize = new Size(281, 321);
-
-        // Add to InitializeComponent():
-        nudUserCount = new NumericUpDown();
-        btnGenerateUsers = new Button();
-        btnRandomizePerms = new Button();
-        lblUserCount = new Label();
-
-        // User Count Label
-        lblUserCount.AutoSize = true;
-        lblUserCount.Location = new Point(12, 390);
-        lblUserCount.Name = "lblUserCount";
-        lblUserCount.Size = new Size(115, 20);
-        lblUserCount.Text = "Number of Users:";
-
-        // User Count NumericUpDown
-        ((System.ComponentModel.ISupportInitialize)nudUserCount).BeginInit();
-        nudUserCount.Location = new Point(127, 388);
+         
+        nudUserCount.Location = new System.Drawing.Point(127, 388);
+        nudUserCount.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+        nudUserCount.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
         nudUserCount.Name = "nudUserCount";
-        nudUserCount.Size = new Size(150, 27);
-        nudUserCount.Minimum = 1;
-        nudUserCount.Maximum = 1000;
-        nudUserCount.Value = 100;
-
-        // Generate Users Button
-        btnGenerateUsers.Location = new Point(283, 387);
+        nudUserCount.Size = new System.Drawing.Size(150, 27);
+        nudUserCount.TabIndex = 8;
+        nudUserCount.Value = new decimal(new int[] { 100, 0, 0, 0 });
+         
+        btnGenerateUsers.Location = new System.Drawing.Point(283, 387);
         btnGenerateUsers.Name = "btnGenerateUsers";
-        btnGenerateUsers.Size = new Size(94, 29);
+        btnGenerateUsers.Size = new System.Drawing.Size(94, 29);
+        btnGenerateUsers.TabIndex = 9;
         btnGenerateUsers.Text = "Generate";
         btnGenerateUsers.UseVisualStyleBackColor = true;
         btnGenerateUsers.Click += generateUsersButton_Click;
-
-        // Randomize Permissions Button
-        btnRandomizePerms.Location = new Point(383, 387);
+         
+        btnRandomizePerms.Location = new System.Drawing.Point(383, 387);
         btnRandomizePerms.Name = "btnRandomizePerms";
-        btnRandomizePerms.Size = new Size(94, 29);
+        btnRandomizePerms.Size = new System.Drawing.Size(94, 29);
+        btnRandomizePerms.TabIndex = 10;
         btnRandomizePerms.Text = "Randomize";
         btnRandomizePerms.UseVisualStyleBackColor = true;
         btnRandomizePerms.Click += randomizePermsButton_Click;
-
-        // Add to InitializeComponent():
-        nudPermCount = new NumericUpDown();
-        btnGeneratePerms = new Button();
-        lblPermCount = new Label();
-
-        // Permission Count Label
-        lblPermCount.AutoSize = true;
-        lblPermCount.Location = new Point(12, 430);
-        lblPermCount.Name = "lblPermCount";
-        lblPermCount.Size = new Size(115, 20);
-        lblPermCount.Text = "New Permissions:";
-
-        // Permission Count NumericUpDown
-        ((System.ComponentModel.ISupportInitialize)nudPermCount).BeginInit();
-        nudPermCount.Location = new Point(127, 428);
+         
+        lblUserCount.AutoSize = true;
+        lblUserCount.Location = new System.Drawing.Point(12, 390);
+        lblUserCount.Name = "lblUserCount";
+        lblUserCount.Size = new System.Drawing.Size(123, 20);
+        lblUserCount.TabIndex = 7;
+        lblUserCount.Text = "Number of Users:";
+        
+        nudPermCount.Location = new System.Drawing.Point(127, 428);
+        nudPermCount.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+        nudPermCount.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
         nudPermCount.Name = "nudPermCount";
-        nudPermCount.Size = new Size(150, 27);
-        nudPermCount.Minimum = 1;
-        nudPermCount.Maximum = 1000;
-        nudPermCount.Value = 10;
-
-        // Generate Permissions Button
-        btnGeneratePerms.Location = new Point(283, 427);
+        nudPermCount.Size = new System.Drawing.Size(150, 27);
+        nudPermCount.TabIndex = 1;
+        nudPermCount.Value = new decimal(new int[] { 10, 0, 0, 0 });
+         
+        btnGeneratePerms.Location = new System.Drawing.Point(283, 427);
         btnGeneratePerms.Name = "btnGeneratePerms";
-        btnGeneratePerms.Size = new Size(194, 29);
+        btnGeneratePerms.Size = new System.Drawing.Size(194, 29);
+        btnGeneratePerms.TabIndex = 2;
         btnGeneratePerms.Text = "Generate Permissions";
         btnGeneratePerms.UseVisualStyleBackColor = true;
         btnGeneratePerms.Click += generatePermissionsButton_Click;
-
-        // Add to Controls collection
+         
+        lblPermCount.AutoSize = true;
+        lblPermCount.Location = new System.Drawing.Point(12, 430);
+        lblPermCount.Name = "lblPermCount";
+        lblPermCount.Size = new System.Drawing.Size(122, 20);
+        lblPermCount.TabIndex = 0;
+        lblPermCount.Text = "New Permissions:";
+         
+        AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        ClientSize = new System.Drawing.Size(734, 391);
         Controls.Add(lblPermCount);
         Controls.Add(nudPermCount);
         Controls.Add(btnGeneratePerms);
-        ((System.ComponentModel.ISupportInitialize)nudPermCount).EndInit();
-
-        // Add to Controls collection
         Controls.Add(lblNewPermission);
         Controls.Add(txbNewPermission);
         Controls.Add(btnAddPermission);
         Controls.Add(btnRemovePermission);
-
-        // Add to Controls collection
         Controls.Add(lblUserCount);
         Controls.Add(nudUserCount);
         Controls.Add(btnGenerateUsers);
         Controls.Add(btnRandomizePerms);
+        Controls.Add(usernameLabel);
+        Controls.Add(txbUsername);
+        Controls.Add(roleLabel);
+        Controls.Add(cmbRoles);
+        Controls.Add(lsbUsernames);
+        Controls.Add(lsbUsers);
+        Controls.Add(addUserButton);
+        Controls.Add(assignRoleButton);
+        Controls.Add(removeRoleButton);
+        Controls.Add(btnSearch);
+        Controls.Add(btnUserRoles);
+        Controls.Add(cmbSortMethod);
+        Controls.Add(btnSort);
+        Controls.Add(lblSearchResults);
+        Controls.Add(lsbResults);
+        Controls.Add(lblSearchType);
+        Controls.Add(cmbSearchMethod);
+        MinimumSize = new System.Drawing.Size(750, 410);
+        Text = "User Perms Manager";
         ((System.ComponentModel.ISupportInitialize)nudUserCount).EndInit();
-
-        AutoScaleDimensions = new SizeF(8F, 20F);
-        AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(734, 371);
-        MinimumSize = new Size(750, 410);
-        Controls.AddRange(new Control[] {
-            usernameLabel,
-            txbUsername,
-            roleLabel,
-            cmbRoles,
-            permissionsLabel,
-            lsbPerms,
-            addUserButton,
-            assignRoleButton,
-            removeRoleButton,
-            searchButton,
-            userRolesButton,
-            cmbSortMethod,
-            sortButton,
-            searchResultsLabel,
-            lsbResults,
-            searchMethodLabel,
-            cmbSearchMethod,
-        });
-        Name = "MainForm";
-        Text = "VRC Permission Manager";
+        ((System.ComponentModel.ISupportInitialize)nudPermCount).EndInit();
+        ResumeLayout(false);
+        PerformLayout();
     }
 
     #endregion
 
     private TextBox txbUsername;
     private ComboBox cmbRoles;
-    private ListBox lsbPerms;
+    private System.Windows.Forms.ListBox lsbUsers;
     private Button addUserButton;
     private Button assignRoleButton;
     private Button removeRoleButton;
-    private Button searchButton;
-    private Button userRolesButton;
-    private Button sortButton;
+    private Button btnSearch;
+    private Button btnUserRoles;
+    private Button btnSort;
     private ComboBox cmbSortMethod;
     private Label usernameLabel;
-    private Label roleLabel;
-    private Label permissionsLabel;
-    private Label searchResultsLabel;
+    private System.Windows.Forms.Label roleLabel;
+    private System.Windows.Forms.Label lsbUsernames;
+    private Label lblSearchResults;
     private ListBox lsbResults;
     private ComboBox cmbSearchMethod;
-    private Label searchMethodLabel;
-    private TextBox txbNewPermission;
-    private Button btnAddPermission;
-    private Button btnRemovePermission;
-    private Label lblNewPermission;
+    private Label lblSearchType;
+    private System.Windows.Forms.TextBox txbNewPermission;
+    private System.Windows.Forms.Button btnAddPermission;
+    private System.Windows.Forms.Button btnRemovePermission;
+    private System.Windows.Forms.Label lblNewPermission;
     private NumericUpDown nudUserCount;
     private Button btnGenerateUsers;
     private Button btnRandomizePerms;

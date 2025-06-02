@@ -5,7 +5,7 @@ public partial class MainForm : Form
     private HashSet<string> whitelist = new HashSet<string>();
     private Dictionary<string, HashSet<string>> permissions = new Dictionary<string, HashSet<string>>
     {
-        {"NoPerms", new HashSet<string>()}  // Keep only NoPerms as the default
+        {"NoPerms", new HashSet<string>()}
     };
 
 	private readonly Random random = new Random();
@@ -58,21 +58,18 @@ public partial class MainForm : Form
             MessageBox.Show("Cannot remove 'NoPerms' as it is a required permission type.");
             return;
         }
-
-        // Get all users who only have this permission (besides NoPerms)
+        
         var affectedUsers = permissions[selectedPermission]
             .Where(user => permissions
                 .Where(p => p.Key != "NoPerms" && p.Key != selectedPermission)
                 .All(p => !p.Value.Contains(user)))
             .ToList();
-
-        // Add these users back to NoPerms
+        
         foreach (var user in affectedUsers)
         {
             permissions["NoPerms"].Add(user);
         }
-
-        // Remove the permission type
+        
         permissions.Remove(selectedPermission);
         
         RefreshRolesList();
@@ -86,14 +83,13 @@ public partial class MainForm : Form
         cmbRoles.Items.Clear();
         cmbRoles.Items.AddRange(permissions.Keys.ToArray());
         
-        // Try to restore the previous selection if it still exists
         if (!string.IsNullOrEmpty(selectedRole) && permissions.ContainsKey(selectedRole))
         {
             cmbRoles.SelectedItem = selectedRole;
         }
         else
         {
-            cmbRoles.SelectedIndex = 0; // Default to first item
+            cmbRoles.SelectedIndex = 0;
         }
     }
 
@@ -102,7 +98,6 @@ public partial class MainForm : Form
         string username = txbUsername.Text.Trim();
         if (!string.IsNullOrEmpty(username) && whitelist.Add(username))
         {
-            // Automatically assign NoPerms role to new users
             permissions["NoPerms"].Add(username);
             MessageBox.Show($"Added {username} to whitelist with NoPerms role.");
             RefreshPermsList();
@@ -118,7 +113,6 @@ public partial class MainForm : Form
         {
             if (role != "NoPerms")
             {
-                // Remove NoPerms when assigning any other role
                 permissions["NoPerms"].Remove(username);
             }
         
@@ -137,12 +131,10 @@ public partial class MainForm : Form
         {
             if (permissions[role].Remove(username))
             {
-                // Check if user has any remaining roles
                 bool hasOtherRoles = permissions
                     .Where(p => p.Key != "NoPerms")
                     .Any(p => p.Value.Contains(username));
-
-                // If no other roles, assign NoPerms
+                
                 if (!hasOtherRoles)
                 {
                     permissions["NoPerms"].Add(username);
@@ -158,63 +150,74 @@ public partial class MainForm : Form
         }
     }
 
-    private void searchButton_Click(object sender, EventArgs e)
+private void searchButton_Click(object sender, EventArgs e)
+{
+    string searchUsername = txbUsername.Text.Trim();
+    string searchPermission = cmbRoles.SelectedItem?.ToString();
+    lsbResults.Items.Clear();
+    
+    if (string.IsNullOrEmpty(searchUsername) && string.IsNullOrEmpty(searchPermission))
     {
-        string searchUsername = txbUsername.Text.Trim();
-        if (string.IsNullOrEmpty(searchUsername)) return;
-
-        lsbResults.Items.Clear();
-        
-        if (cmbSearchMethod.SelectedItem.ToString() == "Linear Search")
+        MessageBox.Show("Please enter a username or select a permission to search.");
+        return;
+    }
+    
+    if (!string.IsNullOrEmpty(searchUsername))
+    {
+        var userPermissions = new List<string>();
+        foreach (var permission in permissions)
         {
-            // Linear Search - O(n) time complexity
-            foreach (var role in permissions.Keys)
+            if (permission.Value.Contains(searchUsername))
             {
-                if (permissions[role].Contains(searchUsername))
-                {
-                    lsbResults.Items.Add($"Found in role: {role}");
-                }
-            }
-        }
-        else // Binary Search
-        {
-            // Get all users and sort them first (required for binary search)
-            var allUsers = new List<string>();
-            foreach (var role in permissions.Values)
-            {
-                allUsers.AddRange(role);
-            }
-            allUsers = allUsers.Distinct().OrderBy(x => x).ToList();
-
-            // Perform binary search
-            int index = BinarySearch(allUsers, searchUsername);
-            if (index != -1)
-            {
-                // If found, still need to check which roles they're in
-                foreach (var role in permissions.Keys)
-                {
-                    if (permissions[role].Contains(searchUsername))
-                    {
-                        lsbResults.Items.Add($"Found in role: {role} (using Binary Search)");
-                    }
-                }
+                userPermissions.Add(permission.Key);
             }
         }
 
-        if (lsbResults.Items.Count == 0)
+        if (userPermissions.Count > 0)
         {
-            lsbResults.Items.Add("User not found in any role");
+            lsbResults.Items.Add($"Permissions for user '{searchUsername}':");
+            foreach (var permission in userPermissions)
+            {
+                lsbResults.Items.Add($"- {permission}");
+            }
+        }
+        else
+        {
+            lsbResults.Items.Add($"No permissions found for user '{searchUsername}'");
         }
     }
+    
+    else if (!string.IsNullOrEmpty(searchPermission))
+    {
+        if (permissions.TryGetValue(searchPermission, out var users))
+        {
+            if (users.Count > 0)
+            {
+                lsbResults.Items.Add($"Users with permission '{searchPermission}':");
+                foreach (var user in users)
+                {
+                    lsbResults.Items.Add($"- {user}");
+                }
+            }
+            else
+            {
+                lsbResults.Items.Add($"No users found with permission '{searchPermission}'");
+            }
+        }
+        else
+        {
+            lsbResults.Items.Add($"Permission '{searchPermission}' not found");
+        }
+    }
+}
 
-    private void userRolesButton_Click(object sender, EventArgs e)
+    private void BtnUserRolesClick(object sender, EventArgs e)
     {
         string username = txbUsername.Text.Trim();
         if (string.IsNullOrEmpty(username)) return;
 
         var userRoles = new List<string>();
         
-        // O(n) time complexity where n is the number of roles
         foreach (var role in permissions)
         {
             if (role.Value.Contains(username))
@@ -237,7 +240,7 @@ public partial class MainForm : Form
         }
     }
 
-    private void sortButton_Click(object sender, EventArgs e)
+    private void BtnSortClick(object sender, EventArgs e)
     {
         var items = new List<string>();
         foreach (var item in lsbResults.Items)
@@ -248,21 +251,20 @@ public partial class MainForm : Form
         switch (cmbSortMethod.SelectedItem.ToString())
         {
             case "Bubble Sort":
-                BubbleSort(items); // O(n²)
+                BubbleSort(items);
                 break;
             case "Quick Sort":
-                QuickSort(items, 0, items.Count - 1); // O(n log n)
+                QuickSort(items, 0, items.Count - 1);
                 break;
             case "Merge Sort":
-                items = MergeSort(items); // O(n log n)
+                items = MergeSort(items);
                 break;
         }
 
         lsbResults.Items.Clear();
         lsbResults.Items.AddRange(items.ToArray());
     }
-
-    // Bubble Sort - O(n²)
+    
     private void BubbleSort(List<string> items)
     {
         int n = items.Count;
@@ -272,7 +274,6 @@ public partial class MainForm : Form
             {
                 if (string.Compare(items[j], items[j + 1]) > 0)
                 {
-                    // Swap
                     var temp = items[j];
                     items[j] = items[j + 1];
                     items[j + 1] = temp;
@@ -280,8 +281,7 @@ public partial class MainForm : Form
             }
         }
     }
-
-    // Quick Sort - O(n log n) average case
+    
     private void QuickSort(List<string> items, int low, int high)
     {
         if (low < high)
@@ -314,8 +314,7 @@ public partial class MainForm : Form
 
         return i + 1;
     }
-
-    // Merge Sort - O(n log n)
+    
     private List<string> MergeSort(List<string> items)
     {
         if (items.Count <= 1) return items;
@@ -367,26 +366,25 @@ public partial class MainForm : Form
     private void RefreshPermsList()
     {
         string selectedRole = cmbRoles.SelectedItem?.ToString();
-        lsbPerms.Items.Clear();
+        lsbUsers.Items.Clear();
 
         if (!string.IsNullOrEmpty(selectedRole) && permissions.ContainsKey(selectedRole))
         {
             foreach (var user in permissions[selectedRole])
             {
-                lsbPerms.Items.Add(user);
+                lsbUsers.Items.Add(user);
             }
         }
     }
 
     private void permissionListBox_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (lsbPerms.SelectedItem != null)
+        if (lsbUsers.SelectedItem != null)
         {
-            txbUsername.Text = lsbPerms.SelectedItem.ToString();
+            txbUsername.Text = lsbUsers.SelectedItem.ToString();
         }
     }
-
-    // Binary Search - O(log n) - requires sorted array
+    
     private int BinarySearch(List<string> sortedItems, string target)
     {
         int left = 0;
@@ -398,15 +396,15 @@ public partial class MainForm : Form
             int comparison = string.Compare(sortedItems[mid], target);
 
             if (comparison == 0)
-                return mid;  // Found the target
+                return mid;
             
             if (comparison < 0)
-                left = mid + 1;  // Target is in right half
+                left = mid + 1;
             else
-                right = mid - 1;  // Target is in left half
+                right = mid - 1;
         }
 
-        return -1;  // Target not found
+        return -1;
     }
 
 	private void generateUsersButton_Click(object sender, EventArgs e)
@@ -432,8 +430,7 @@ public partial class MainForm : Form
 			MessageBox.Show("No users to assign permissions to.");
 			return;
 		}
-
-		// Get all available permissions except NoPerms
+        
 		var availablePerms = permissions.Keys
 			.Where(p => p != "NoPerms")
 			.ToList();
@@ -443,32 +440,26 @@ public partial class MainForm : Form
 			MessageBox.Show("No permissions available to assign (other than NoPerms).");
 			return;
 		}
-
-		// Clear all existing permissions first
+        
 		foreach (var perm in permissions.Values)
 		{
 			perm.Clear();
 		}
 
 		var users = whitelist.ToList();
-
-		// Randomly assign permissions to each user
+        
 		foreach (var user in users)
 		{
-			// Randomly decide how many permissions this user will get
-			// Using exponential distribution to make fewer permissions more common
 			double randomValue = random.NextDouble();
 			int numPermsToAssign = (int)(Math.Log(1 - randomValue) * -3.0);
 			numPermsToAssign = Math.Min(numPermsToAssign, availablePerms.Count);
 
 			if (numPermsToAssign == 0)
 			{
-				// If user gets no permissions, they get NoPerms
 				permissions["NoPerms"].Add(user);
 				continue;
 			}
-
-			// Randomly select the permissions
+            
 			var shuffledPerms = availablePerms.OrderBy(x => random.Next()).Take(numPermsToAssign);
 			foreach (var perm in shuffledPerms)
 			{
@@ -477,8 +468,7 @@ public partial class MainForm : Form
 		}
 
 		RefreshPermsList();
-
-		// Calculate statistics for the message
+        
 		var stats = whitelist
 			.Select(user => permissions
 				.Count(p => p.Value.Contains(user) && p.Key != "NoPerms"))
@@ -496,7 +486,6 @@ private void generatePermissionsButton_Click(object sender, EventArgs e)
     int permCount = (int)nudPermCount.Value;
     int existingPerms = permissions.Count;
     
-    // Get the highest number from existing Perm_X permissions
     int startNumber = permissions.Keys
         .Where(p => p.StartsWith("Perm_"))
         .Select(p => 

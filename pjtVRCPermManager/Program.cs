@@ -1,3 +1,5 @@
+/*
+
 namespace pjtVRCPermManager;
 
 static class Program
@@ -14,3 +16,5 @@ static class Program
         Application.Run(new MainForm());
     }
 }
+
+*/

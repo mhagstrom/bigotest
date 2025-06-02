@@ -7,8 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fad5a1c2-7e72-4ef1-a4d8-a4bd0bfac268" name="Changes" comment="">
+    <list default="true" id="fad5a1c2-7e72-4ef1-a4d8-a4bd0bfac268" name="Changes" comment="fixed AddUser button">
+      <change afterPath="$PROJECT_DIR$/pjtVRCPermManager/BigO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.solVRCPermManager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.solVRCPermManager/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pjtVRCPermManager/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/pjtVRCPermManager/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pjtVRCPermManager/pjtVRCPermManager.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/pjtVRCPermManager/pjtVRCPermManager.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +38,6 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///AIAssistantSnippet.." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Blake Blair/RiderProjects/solVRCPermManager/pjtVRCPermManager/MainForm.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -63,7 +65,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected=".NET Project.pjtVRCPermManager">
     <configuration name="pjtVRCPermManager" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -81,7 +83,7 @@
       <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
-      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_KIND" value="Unloaded" />
       <option name="PROJECT_TFM" value="" />
       <method v="2">
         <option name="Build" />
@@ -96,6 +98,7 @@
       <option name="presentableId" value="Default" />
       <updated>1748825442972</updated>
       <workItem from="1748825444349" duration="4679000" />
+      <workItem from="1748836002492" duration="1846000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />

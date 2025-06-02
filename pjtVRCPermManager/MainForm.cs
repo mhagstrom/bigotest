@@ -16,68 +16,68 @@ public partial class MainForm : Form
         public MainForm()
         {
             InitializeComponent();
-            roleComboBox.Items.AddRange(permissions.Keys.ToArray());
+            cmbRoles.Items.AddRange(permissions.Keys.ToArray());
         }
 
         private void addUserButton_Click(object sender, EventArgs e)
         {
-            string username = usernameTextBox.Text.Trim();
+            string username = txbUsername.Text.Trim();
             if (!string.IsNullOrEmpty(username) && whitelist.Add(username))
             {
                 MessageBox.Show($"Added {username} to whitelist.");
-                RefreshPermissionList();
+                RefreshPermsList();
             }
         }
 
         private void assignRoleButton_Click(object sender, EventArgs e)
         {
-            string username = usernameTextBox.Text.Trim();
-            string role = roleComboBox.SelectedItem?.ToString();
+            string username = txbUsername.Text.Trim();
+            string role = cmbRoles.SelectedItem?.ToString();
 
             if (!string.IsNullOrEmpty(username) && permissions.ContainsKey(role))
             {
                 permissions[role].Add(username);
                 MessageBox.Show($"Assigned role {role} to {username}.");
-                RefreshPermissionList();
+                RefreshPermsList();
             }
         }
 
         private void removeRoleButton_Click(object sender, EventArgs e)
         {
-            string username = usernameTextBox.Text.Trim();
-            string role = roleComboBox.SelectedItem?.ToString();
+            string username = txbUsername.Text.Trim();
+            string role = cmbRoles.SelectedItem?.ToString();
 
             if (!string.IsNullOrEmpty(username) && permissions.ContainsKey(role) && permissions[role].Remove(username))
             {
                 MessageBox.Show($"Removed role {role} from {username}.");
-                RefreshPermissionList();
+                RefreshPermsList();
             }
         }
 
         private void roleComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RefreshPermissionList();
+            RefreshPermsList();
         }
 
-        private void RefreshPermissionList()
+        private void RefreshPermsList()
         {
-            string selectedRole = roleComboBox.SelectedItem?.ToString();
-            permissionListBox.Items.Clear();
+            string selectedRole = cmbRoles.SelectedItem?.ToString();
+            lsbPerms.Items.Clear();
 
             if (!string.IsNullOrEmpty(selectedRole) && permissions.ContainsKey(selectedRole))
             {
                 foreach (var user in permissions[selectedRole])
                 {
-                    permissionListBox.Items.Add(user);
+                    lsbPerms.Items.Add(user);
                 }
             }
         }
 
         private void permissionListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (permissionListBox.SelectedItem != null)
+            if (lsbPerms.SelectedItem != null)
             {
-                usernameTextBox.Text = permissionListBox.SelectedItem.ToString();
+                txbUsername.Text = lsbPerms.SelectedItem.ToString();
             }
         }
 }

@@ -17,9 +17,9 @@ partial class MainForm
     
     private void InitializeComponent()
     {
-        usernameTextBox = new TextBox();
-        roleComboBox = new ComboBox();
-        permissionListBox = new ListBox();
+        txbUsername = new TextBox();
+        cmbRoles = new ComboBox();
+        lsbPerms = new ListBox();
         addUserButton = new Button();
         assignRoleButton = new Button();
         removeRoleButton = new Button();
@@ -35,11 +35,11 @@ partial class MainForm
         usernameLabel.Text = "Username:";
 
         // Text field for username entry
-        usernameTextBox.AutoSize = true;
-        usernameTextBox.Location = new Point(93, 12);
-        usernameTextBox.Name = "usernameTextBox";
-        usernameTextBox.Size = new Size(200, 27);
-        usernameTextBox.MinimumSize = new Size(200, 27);
+        txbUsername.AutoSize = true;
+        txbUsername.Location = new Point(93, 12);
+        txbUsername.Name = "txbUsername";
+        txbUsername.Size = new Size(200, 27);
+        txbUsername.MinimumSize = new Size(200, 27);
 
         // Label for roles dropdown
         roleLabel.AutoSize = true;
@@ -49,12 +49,12 @@ partial class MainForm
         roleLabel.Text = "Role:";
 
         // Dropdown for role
-        roleComboBox.AutoSize = true;
-        roleComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-        roleComboBox.Location = new Point(93, 49);
-        roleComboBox.Name = "roleComboBox";
-        roleComboBox.Size = new Size(200, 28);
-        roleComboBox.MinimumSize = new Size(200, 28);
+        cmbRoles.AutoSize = true;
+        cmbRoles.DropDownStyle = ComboBoxStyle.DropDownList;
+        cmbRoles.Location = new Point(93, 49);
+        cmbRoles.Name = "cmbRoles";
+        cmbRoles.Size = new Size(200, 28);
+        cmbRoles.MinimumSize = new Size(200, 28);
 
         // Label for perms ListBox
         permissionsLabel.AutoSize = true;
@@ -64,10 +64,10 @@ partial class MainForm
         permissionsLabel.Text = "Permissions:";
 
         // ListBox of perms
-        permissionListBox.Location = new Point(12, 115);
-        permissionListBox.Name = "permissionListBox";
-        permissionListBox.Size = new Size(281, 244);
-        permissionListBox.MinimumSize = new Size(281, 244);
+        lsbPerms.Location = new Point(12, 115);
+        lsbPerms.Name = "lsbPerms";
+        lsbPerms.Size = new Size(281, 244);
+        lsbPerms.MinimumSize = new Size(281, 244);
 
         // Button to add user to whitelist
         addUserButton.AutoSize = true;
@@ -100,11 +100,11 @@ partial class MainForm
         MinimumSize = new Size(450, 410);
         Controls.AddRange(new Control[] {
             usernameLabel,
-            usernameTextBox,
+            txbUsername,
             roleLabel,
-            roleComboBox,
+            cmbRoles,
             permissionsLabel,
-            permissionListBox,
+            lsbPerms,
             addUserButton,
             assignRoleButton,
             removeRoleButton
@@ -115,9 +115,9 @@ partial class MainForm
 
     #endregion
 
-    private TextBox usernameTextBox;
-    private ComboBox roleComboBox;
-    private ListBox permissionListBox;
+    private TextBox txbUsername;
+    private ComboBox cmbRoles;
+    private ListBox lsbPerms;
     private Button addUserButton;
     private Button assignRoleButton;
     private Button removeRoleButton;
